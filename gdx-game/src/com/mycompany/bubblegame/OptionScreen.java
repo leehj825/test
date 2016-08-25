@@ -112,6 +112,7 @@ public class OptionScreen implements Screen
 		
 		if (Gdx.input.isKeyPressed(Input.Keys.BACK))
 		{
+			//game.orientation.showAd();
 			game.setScreen(game.menu_screen);
 		}
 		

@@ -69,6 +69,7 @@ public class EndGameScreen implements Screen
 		{
 			//game.records.putFloat("highest", 0f);
 			//game.records.flush();
+			game.orientation.showAd();
 			game.setScreen(game.menu_screen);
 			menu_touched = false;
 
@@ -79,6 +80,7 @@ public class EndGameScreen implements Screen
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.BACK))
 		{
+			game.orientation.showAd();
 			game.setScreen(game.menu_screen);
 		}
 		

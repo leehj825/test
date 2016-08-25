@@ -7,4 +7,6 @@ public interface GameOrientation {
 	public static final int LANDSCAPE=2;
 
 	void setOrientation(int orientation);
+	
+	boolean showAd();
 }

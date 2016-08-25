@@ -17,6 +17,9 @@ public final class R {
         public static final int button_play=0x7f020003;
         public static final int ic_launcher=0x7f020004;
     }
+    public static final class id {
+        public static final int startAppBanner=0x7f050000;
+    }
     public static final class layout {
         public static final int main=0x7f030000;
     }
