@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/mainlayout"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:orientation="vertical"
 	android:background="#F7F7F7">
 	
-	<com.startapp.android.publish.banner.Banner 
-		android:id="@+id/startAppBanner"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"/>
+	
 
-
-</LinearLayout>
-
+</RelativeLayout>

@@ -102,6 +102,7 @@ public class BubbleGame extends Game
 		asset_manager.load("left_arrow.jpg", Texture.class);
 		asset_manager.load("retry_button.png", Texture.class);
 		asset_manager.load("menu_button_end.png", Texture.class);
+		asset_manager.load("resume_button.png", Texture.class);
 
 		asset_manager.load("background4.jpg", Texture.class);
 		asset_manager.load("background2.jpg", Texture.class);
@@ -138,11 +139,13 @@ public class BubbleGame extends Game
 	@Override
 	public void pause()
 	{
+		super.pause();
 	}
 
 	@Override
 	public void resume()
 	{
+		super.resume();
 	}
 	
 	

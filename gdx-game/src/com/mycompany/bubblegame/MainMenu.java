@@ -80,6 +80,8 @@ public class MainMenu implements Screen
 		batch.end();
 		if (Gdx.input.isTouched() && play_position.contains(Gdx.input.getX(), scr_height-Gdx.input.getY()))
 		{
+			//game.game_screen.initialize();
+			//game.game_screen.resetGame();
 			game.setScreen(game.game_screen);
 		}
 		

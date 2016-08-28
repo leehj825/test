@@ -14,6 +14,8 @@ public class EndGameScreen implements Screen
 	TextureRegion retry;
 	Rectangle retry_position;
 	boolean retry_touched = false;
+	TextureRegion resume;
+	
 	TextureRegion menu;
 	Rectangle menu_position;
 	boolean menu_touched = false;
@@ -45,7 +47,14 @@ public class EndGameScreen implements Screen
 		//font.drawMultiLine(batch, "Screen Orientation\n(Portrait)", font_position.x, font_position.y);
 		font.draw(batch, "Point: "+(int)(game.game_screen.score_number), font_position.x, font_position.y);
 		
-		batch.draw(retry, retry_position.x, retry_position.y, retry_position.width, retry_position.height);
+		if ( game.game_screen.game_complete)
+		{
+			batch.draw(retry, retry_position.x, retry_position.y, retry_position.width, retry_position.height);
+		}
+		else
+		{
+			batch.draw(resume, retry_position.x, retry_position.y, retry_position.width, retry_position.height);
+		}
 		batch.draw(menu, menu_position.x, menu_position.y, menu_position.width, menu_position.height);
 		//font.draw(batch, "Reset highest score", score_position.x, score_position.y);
 
@@ -56,6 +65,11 @@ public class EndGameScreen implements Screen
 		{
 			//game.records.putFloat("highest", 0f);
 			//game.records.flush();
+			if (game.game_screen.game_complete)
+			{
+				game.orientation.setOrientatonChanged(true);
+			}
+			
 			game.setScreen(game.game_screen);
 			retry_touched = false;
 
@@ -67,9 +81,16 @@ public class EndGameScreen implements Screen
 		
 		if (!Gdx.input.isTouched() && menu_touched)
 		{
+			if (game.records.getFloat("highest",0f) < game.game_screen.score_number)
+			{
+				game.records.putFloat("highest", game.game_screen.score_number);
+				game.records.flush();
+			}
 			//game.records.putFloat("highest", 0f);
 			//game.records.flush();
+			//game.orientation.submitScore((int)game.game_screen.score_number);
 			game.orientation.showAd();
+			game.orientation.setOrientatonChanged(true);
 			game.setScreen(game.menu_screen);
 			menu_touched = false;
 
@@ -80,7 +101,13 @@ public class EndGameScreen implements Screen
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.BACK))
 		{
+			if (game.records.getFloat("highest",0f) < game.game_screen.score_number)
+			{
+				game.records.putFloat("highest", game.game_screen.score_number);
+				game.records.flush();
+			}
 			game.orientation.showAd();
+			game.orientation.setOrientatonChanged(true);
 			game.setScreen(game.menu_screen);
 		}
 		
@@ -131,9 +158,10 @@ public class EndGameScreen implements Screen
 		// TODO: Implement this method
 		Texture texture_retry = game.asset_manager.get("retry_button.png", Texture.class);
 		Texture texture_menu = game.asset_manager.get("menu_button_end.png", Texture.class);
-		
+		Texture texture_resume = game.asset_manager.get("resume_button.png", Texture.class);
 		retry = new TextureRegion(texture_retry);
 		menu = new TextureRegion(texture_menu);
+		resume = new TextureRegion(texture_resume);
 		
 		//initialize();
 	}

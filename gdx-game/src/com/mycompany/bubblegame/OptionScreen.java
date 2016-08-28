@@ -89,6 +89,7 @@ public class OptionScreen implements Screen
 				game.orientation.setOrientation(GameOrientation.PORTRAIT);
 				initialize();
 			}
+			game.orientation.setOrientatonChanged(true);
 			prev_check_touched = false;
 				
 		}
@@ -100,8 +101,9 @@ public class OptionScreen implements Screen
 		// button to bring circles down
 		if (!Gdx.input.isTouched() && prev_score_touched)
 		{
-			game.records.putFloat("highest", 0f);
-			game.records.flush();
+			//game.records.putFloat("highest", 0f);
+			//game.records.flush();
+			//game.orientation.showScores();
 			prev_score_touched = false;
 
 		}

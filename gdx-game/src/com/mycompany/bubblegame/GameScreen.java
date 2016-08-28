@@ -124,6 +124,8 @@ public class GameScreen implements Screen
 	TextureRegion background;
 	Rectangle background_position;
 	
+	public boolean game_complete = false;
+	
 	BubbleGame game;
 	
 	public GameScreen(BubbleGame game)
@@ -200,11 +202,13 @@ public class GameScreen implements Screen
 			{
 				//resetGame();
 				// we should save point to file
-				if (game.records.getFloat("highest",0f) < score_number)
+				/*if (game.records.getFloat("highest",0f) < score_number)
 				{
 					game.records.putFloat("highest", score_number);
 					game.records.flush();
-				}
+				}*/
+				
+				game_complete = true;
 				game.setScreen(game.end_screen);
 			}
 				
@@ -217,11 +221,11 @@ public class GameScreen implements Screen
 		
 		if (Gdx.input.isKeyPressed(Input.Keys.BACK))
 		{
-			if (game.records.getFloat("highest",0f) < score_number)
+			/*if (game.records.getFloat("highest",0f) < score_number)
 			{
 				game.records.putFloat("highest", score_number);
 				game.records.flush();
-			}
+			}*/
 			game.setScreen(game.end_screen);
 		}
 
@@ -1071,13 +1075,13 @@ public class GameScreen implements Screen
 		//score.
 		//score.setColor(Color.PURPLE);
 
+
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("ethnocentric_rg.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		parameter.size = (int) (circle_size/1.3f);
 		parameter.color = Color.BLACK;
 		score = generator.generateFont(parameter); // font size 12 pixels
 		generator.dispose(); 
-		
 
 		score_number=0.0f;
 		score_shown=0.0f;
@@ -1091,6 +1095,7 @@ public class GameScreen implements Screen
 	{
 
 		charm_start = false;
+		game_complete = false;
 		
 		circle_pos.clear();
 		circle_settle.clear();
@@ -1138,9 +1143,13 @@ public class GameScreen implements Screen
 		// TODO: Implement this method
 		
 		
+		if (game.orientation.isOrientationchanged())
+		{
+			initialize();
+			resetGame();
+			game.orientation.setOrientatonChanged(false);
+		}
 		
-		initialize();
-		resetGame();
 	}
 
 	@Override
@@ -1288,8 +1297,10 @@ public class GameScreen implements Screen
 		glow_vertical_ani = new Animation(0.1f, glow_vert_frames);
 		glow_vertical_ani.setPlayMode(Animation.PlayMode.NORMAL);
 		
-		initialize();
-		resetGame();
+
+		
+		//initialize();
+		//resetGame();
 	}
 
 	@Override
@@ -1302,6 +1313,7 @@ public class GameScreen implements Screen
 	public void pause()
 	{
 		// TODO: Implement this method
+		game.setScreen(game.end_screen);
 	}
 
 	@Override

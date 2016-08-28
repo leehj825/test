@@ -8,5 +8,6 @@
 <classpathentry exported="true" kind="lib" path="/gdx-game/libs/gdx.jar"/>
 <classpathentry exported="true" kind="lib" path="/gdx-game/libs/gdx-freetype.jar"/>
 <classpathentry exported="true" kind="lib" path="libs/gdx-backend-android.jar"/>
-<classpathentry kind="lib" path="/storage/emulated/0/AndroidStudioProjects/BubbleGame/gdx-game/libs/StartAppInApp-3.4.3.jar"/>
+<classpathentry exported="true" kind="lib" path="libs/android-support-v4.jar"/>
+<classpathentry exported="true" kind="lib" path="/gdx-game/libs/StartAppInApp-3.4.3.jar"/>
 </classpath>
